@@ -38,8 +38,8 @@ iomem(uint32_t address)
     return *reinterpret_cast<uint32_t volatile *>(address);
 }
 
-void
-reset()
+int
+main()
 {
     iomem(RCC_APB2ENR) |= RCC_APB2ENR_IOPCEN;
     // General purpose output push-pull
@@ -64,6 +64,12 @@ reset()
         }
         iomem(GPIOC_BSRR) = 1 << 13; // high
     }
+}
+
+void
+reset()
+{
+    main();
 }
 
 void (*const vectors[])() __attribute__((used, section(".vectors"))) = {
