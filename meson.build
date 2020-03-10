@@ -16,7 +16,9 @@ stflash = find_program('st-flash')
 objcopy = find_program('arm-none-eabi-objcopy')
 size = find_program('arm-none-eabi-size')
 
-srcfiles = ['main.cpp']
+srcfiles = [
+        'main.cpp',
+        ]
 
 add_project_arguments(
         '-mcpu=' + host_machine.cpu(),
