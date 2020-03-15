@@ -18,6 +18,8 @@ size = find_program('arm-none-eabi-size')
 
 srcfiles = [
         'main.cpp',
+        'vectors.s',
+        'reset.s',
         ]
 
 add_project_arguments(
@@ -34,7 +36,7 @@ add_project_arguments(
         '-fno-rtti',
         '-ffunction-sections',
         '-fdata-sections',
-        language: 'cpp',
+        language: ['cpp', 'c'],
         )
 
 add_project_link_arguments(
@@ -42,10 +44,11 @@ add_project_link_arguments(
         '-mthumb',
         '-T' + meson.current_source_dir() + '/link.ld',
         '-nostartfiles',
+        '-Wl,--print-memory-usage',
         '-ffunction-sections',
         '-fdata-sections',
         '-Wl,--gc-sections',
-        language: 'cpp',
+        language: ['cpp', 'c'],
         )
 
 
@@ -82,7 +85,9 @@ run_target(
 run_target(
         'flash',
         command: [
-            stflash, 'write',
+            stflash,
+            '--reset',
+            'write',
             exe.full_path() + '.bin',
             '0x08000000'
             ],

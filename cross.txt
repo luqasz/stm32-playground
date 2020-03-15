@@ -1,6 +1,7 @@
 [binaries]
 c = 'arm-none-eabi-gcc'
 cpp = 'arm-none-eabi-g++'
+asm = 'arm-none-eabi-asm'
 strip = 'arm-none-eabi-strip'
 ar = 'arm-none-eabi-ar'
 

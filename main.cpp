@@ -1,7 +1,5 @@
 #include <stdint.h>
 
-constexpr uint32_t STACK_START = 0x20000400;
-
 /* Peripheral base address */
 constexpr uint32_t PERIPHERAL_START_ADDRESS = 0x40000000;
 constexpr uint32_t APB1_START_ADDRESS       = PERIPHERAL_START_ADDRESS;
@@ -65,15 +63,3 @@ main()
         iomem(GPIOC_BSRR) = 1 << 13; // high
     }
 }
-
-void
-reset()
-{
-    main();
-}
-
-void (*const vectors[])() __attribute__((used, section(".vectors"))) = {
-    (void (*)())STACK_START,
-    reset,
-};
-
