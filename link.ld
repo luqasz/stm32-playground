@@ -24,20 +24,16 @@ SECTIONS {
     {
         DATA_START = .;
         *(.data .data.*);
+        DATA_END = ALIGN(4);
     } > RAM AT > FLASH
-    DATA_SIZE = SIZEOF(.data);
-    DATA_END = DATA_START - DATA_SIZE;
-
-    DATA_LOAD_START = LOADADDR(.data);
-    DATA_LOAD_END = DATA_LOAD_START + DATA_SIZE;
+    DATA_LOAD_ADDRESS = LOADADDR(.data);
 
     .bss (NOLOAD) : ALIGN(4)
     {
         BSS_START = .;
         *(.bss .bss.*);
+        BSS_END = ALIGN(4);
     } > RAM
-    BSS_SIZE = SIZEOF(.bss);
-    BSS_END = BSS_START + BSS_SIZE;
 
     /DISCARD/ :
     {

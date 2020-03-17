@@ -19,24 +19,28 @@ size = find_program('arm-none-eabi-size')
 srcfiles = [
         'main.cpp',
         'vectors.s',
-        'reset.s',
+        'reset.c',
         ]
 
 add_project_arguments(
         '-mcpu=' + host_machine.cpu(),
         '-mthumb',
-        '-fno-exceptions',
         '-Werror',
         '-Wconversion',
         '-Wsign-conversion',
         '-Wfloat-conversion',
-        '-Woverloaded-virtual',
-        '-fno-exceptions',
         '-fno-asynchronous-unwind-tables',
-        '-fno-rtti',
         '-ffunction-sections',
         '-fdata-sections',
         language: ['cpp', 'c'],
+        )
+
+add_project_arguments(
+        '-fno-exceptions',
+        '-Woverloaded-virtual',
+        '-fno-exceptions',
+        '-fno-rtti',
+        language: ['cpp'],
         )
 
 add_project_link_arguments(
