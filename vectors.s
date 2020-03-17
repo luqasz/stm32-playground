@@ -1,92 +1,92 @@
 .syntax unified
-.section ".vectors", "ax"
-
-.macro handler name
-    .word \name
-    .weak \name
-    .thumb_set \name, default_irq_handler
-.endm
-
-.word STACK_START
-.word reset
-handler NMI
-handler HardFault
-handler MemManage
-handler BusFault
-handler UsageFault
-handler reserved_1c
-handler reserved_20
-handler reserved_24
-handler reserved_28
-handler SVC
-handler DebugMonitor
-handler reserved_34
-handler PendSV
-handler SysTick
-handler wwdg_irq_handler
-handler pvd_irq_handler
-handler tamper_irq_handler
-handler rtc_irq_handler
-handler flash_irq_handler
-handler rcc_irq_handler
-handler exti0_irq_handler
-handler exti1_irq_handler
-handler exti2_irq_handler
-handler exti3_irq_handler
-handler exti4_irq_handler
-handler dma1_channel1_irq_handler
-handler dma1_channel2_irq_handler
-handler dma1_channel3_irq_handler
-handler dma1_channel4_irq_handler
-handler dma1_channel5_irq_handler
-handler dma1_channel6_irq_handler
-handler dma1_channel7_irq_handler
-handler adc1_2_irq_handler
-handler usb_hp_can_tx_irq_handler
-handler usb_lp_can_rx0_irq_handler
-handler can_rx1_irq_handler
-handler can_sce_irq_handler
-handler exti9_5_irq_handler
-handler tim1_brk_irq_handler
-handler tim1_up_irq_handler
-handler tim1_trg_com_irq_handler
-handler tim1_cc_irq_handler
-handler tim2_irq_handler
-handler tim3_irq_handler
-handler tim4_irq_handler
-handler i2c1_ev_irq_handler
-handler i2c1_er_irq_handler
-handler i2c2_ev_irq_handler
-handler i2c2_er_irq_handler
-handler spi1_irq_handler
-handler spi2_irq_handler
-handler usart1_irq_handler
-handler usart2_irq_handler
-handler usart3_irq_handler
-handler exti15_10_irq_handler
-handler rtcalarm_irq_handler
-handler usbwakeup_irq_handler
-handler tim8_brk_irq_handler
-handler tim8_up_irq_handler
-handler tim8_trg_com_irq_handler
-handler tim8_cc_irq_handler
-handler adc3_irq_handler
-handler fsmc_irq_handler
-handler sdio_irq_handler
-handler tim5_irq_handler
-handler spi3_irq_handler
-handler uart4_irq_handler
-handler uart5_irq_handler
-handler tim6_irq_handler
-handler tim7_irq_handler
-handler dma2_channel1_irq_handler
-handler dma2_channel2_irq_handler
-handler dma2_channel3_irq_handler
-handler dma2_channel4_5_irq_handler
 
 .section ".text"
 
 .thumb_func
-default_irq_handler:
+default_irq:
     wfi
-    b default_irq_handler
+
+.section ".vectors", "ax"
+
+.macro irq name
+    .word \name
+    .weak \name
+    .thumb_set \name, default_irq
+.endm
+
+.word STACK_START
+.word reset
+irq NMI
+irq HardFault
+irq MemManage
+irq BusFault
+irq UsageFault
+irq reserved_1c
+irq reserved_20
+irq reserved_24
+irq reserved_28
+irq SVC
+irq DebugMonitor
+irq reserved_34
+irq PendSV
+irq SysTick
+irq WWDG
+irq PVD
+irq Tamper
+irq RTC
+irq Flash
+irq RCC
+irq EXTI0
+irq EXTI1
+irq EXTI2
+irq EXTI3
+irq EXTI4
+irq DMA1_Channel1
+irq DMA1_Channel2
+irq DMA1_Channel3
+irq DMA1_Channel4
+irq DMA1_Channel5
+irq DMA1_Channel6
+irq DMA1_Channel7
+irq ADC1_2
+irq USB_HP_CAN_TX
+irq USB_LP_CAN_RX0
+irq CAN_RX1
+irq CAN_SCE
+irq EXTI9_5
+irq TIM1_BRK
+irq TIM1_UP
+irq TIM1_TRG_COM
+irq TIM1_CC
+irq TIM2
+irq TIM3
+irq TIM4
+irq I2C1_EV
+irq I2C1_ER
+irq I2C2_EV
+irq I2C2_ER
+irq SPI1
+irq SPI2
+irq USART1
+irq USART2
+irq USART3
+irq EXTI15_10
+irq RTC_Alarm
+irq USB_Wakeup
+irq TIM8_BRK
+irq TIM8_UP
+irq TIM8_TRG_COM
+irq TIM8_CC
+irq ADC3
+irq FSMC
+irq SDIO
+irq TIM5
+irq SPI3
+irq UART4
+irq UART5
+irq TIM6
+irq TIM7
+irq DMA2_Channel1
+irq DMA2_Channel2
+irq DMA2_Channel3
+irq DMA2_Channel4_5
