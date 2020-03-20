@@ -1,6 +1,7 @@
 project(
         'stm32f1',
         'cpp',
+        'c',
         default_options: [
             'buildtype=minsize',
             'optimization=s',
@@ -8,6 +9,8 @@ project(
             'cpp_std=c++17',
             'b_lto=false',
             'warning_level=3',
+            'werror=true',
+            'tune=true',
             ]
         )
 
@@ -24,8 +27,10 @@ srcfiles = [
 
 add_project_arguments(
         '-mcpu=' + host_machine.cpu(),
+        '-mtune=' + host_machine.cpu(),
         '-mthumb',
-        '-Werror',
+        '-mfpu=auto',                       # select the floating-point and Advanced SIMD instructions based on the settings of -mcpu and -march.
+        '-fmerge-constants',                # merge same constants into one, saves space
         '-Wconversion',
         '-Wsign-conversion',
         '-Wfloat-conversion',
