@@ -10,14 +10,13 @@ project(
             'b_lto=false',
             'warning_level=3',
             'werror=true',
-            'tune=true',
             ]
         )
 
 stinfo = find_program('st-info')
 stflash = find_program('st-flash')
-objcopy = find_program('arm-none-eabi-objcopy')
-size = find_program('arm-none-eabi-size')
+objcopy = find_program('objcopy')
+size = find_program('size')
 
 srcfiles = [
         'main.cpp',
