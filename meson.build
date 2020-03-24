@@ -25,11 +25,7 @@ srcfiles = [
         ]
 
 add_project_arguments(
-        '-mcpu=' + host_machine.cpu(),
-        '-mtune=' + host_machine.cpu(),
-        '-mthumb',
-        '-mfpu=auto',                       # select the floating-point and Advanced SIMD instructions based on the settings of -mcpu and -march.
-        '-fmerge-constants',                # merge same constants into one, saves space
+        '-fmerge-constants',
         '-Wconversion',
         '-Wsign-conversion',
         '-Wfloat-conversion',
@@ -48,8 +44,6 @@ add_project_arguments(
         )
 
 add_project_link_arguments(
-        '-mcpu=' + host_machine.cpu(),
-        '-mthumb',
         '-T' + meson.current_source_dir() + '/link.ld',
         '-nostartfiles',
         '-Wl,--print-memory-usage',
