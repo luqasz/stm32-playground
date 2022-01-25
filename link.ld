@@ -4,9 +4,10 @@ MEMORY {
 }
 
 SECTIONS {
-    STACK_START = ORIGIN(RAM) + LENGTH(RAM);
+    PROVIDE(STACK_START = ORIGIN(RAM) + LENGTH(RAM));
     .vectors ORIGIN(FLASH) :
     {
+        LONG(STACK_START)
         KEEP(*(.vectors))
     } > FLASH
 

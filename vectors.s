@@ -14,7 +14,6 @@ default_irq:
     .thumb_set \name, default_irq
 .endm
 
-.word STACK_START
 .word reset
 irq NMI
 irq HardFault
