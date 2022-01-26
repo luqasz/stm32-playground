@@ -86,7 +86,5 @@ ASSERT(core_interrupts_end_address - core_interrupts_start_address == 4*15, "
 ERROR: core interrupts table != 15");
 ASSERT(SIZEOF(.got) == 0, "
 ERROR: .got section detected. Dynamic relocations are not supported.");
-
-
-/* ASSERT(SIZEOF(.vectors) > 0x40, " */
-/* ERROR: Missing vendor interrupts in .vectors.vendor section."); */
+ASSERT(SIZEOF(.vectors) > 0x40, "
+ERROR: Missing vendor interrupts in .vectors.vendor section.");
