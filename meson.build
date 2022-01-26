@@ -20,8 +20,8 @@ size = find_program('size')
 
 srcfiles = [
         'main.cpp',
-        'vectors.s',
-        'reset.c',
+        'vectors.c',
+        'reset.s',
         ]
 
 add_project_arguments(
