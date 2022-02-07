@@ -3,8 +3,8 @@ project(
         'cpp',
         'c',
         default_options: [
-            'buildtype=minsize',
-            'optimization=s',
+            'buildtype=debug',
+            'optimization=0',
             'strip=true',
             'cpp_std=c++17',
             'b_lto=false',
